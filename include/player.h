@@ -22,14 +22,11 @@ private:
 	void checkCollectibleCollision();
 	void checkEnemyCollision();
 
-	bool goLeft;
+	int lives;
+
 	bool canMove;
 	bool ascend;
 
-	int lives;
-
-	float positionX;
-	float positionY;
 	float cartSpeed;
 	float hookSpeed;
 	float bonusHookSpeed;
@@ -38,6 +35,7 @@ private:
 
 	Texture2D playerTexture;
 	Texture2D claw;
+	Vector2 position;
 	Vector2 ropeStart;
 	Vector2 ropeEnd;
 
