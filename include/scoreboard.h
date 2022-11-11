@@ -9,6 +9,8 @@ public:
 	void draw();
 
 private:
+	const float textSize;
+
 	const Texture2D texture;
 	std::shared_ptr<gameData> data;
 };
