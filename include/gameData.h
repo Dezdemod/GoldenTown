@@ -29,6 +29,7 @@ struct gameData
 
 	Texture2D background;
 	Music backgroundMusic;
+	Font mainFont;
 
 	const collectibleType type[4] = { stone, gold, diamond, ruby };
 	std::vector<Collectible> collectibles;
