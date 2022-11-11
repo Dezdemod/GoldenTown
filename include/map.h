@@ -12,8 +12,8 @@ public:
 private:
 	void drawClouds();
 
-	float cloudSpeed;
-	std::vector<std::pair<Texture2D, Vector2>> clouds;
+	const float cloudSpeed;
+	std::vector<std::pair<const Texture2D, Vector2>> clouds;
 	std::shared_ptr<gameData> data;
 	std::shared_ptr<Player> player;
 };
