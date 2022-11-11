@@ -18,6 +18,7 @@ gameData::gameData()
 	, select(LoadSound("audio/select.wav"))
 	, background(LoadTexture("map/day.png"))
 	, backgroundMusic(LoadMusicStream("audio/music.mp3"))
+	, mainFont(LoadFont("prstart.ttf"))
 	, collectibles(20, generateCollectible(stone))
 	, enemies(5)
 
@@ -33,6 +34,7 @@ void gameData::update()
 	timer = 25.0f + timerBonus;
 
 	if (level % 3 == 0 && expenses < 500) expenses += 90;
+
 	if (collectibleCount < 20)
 	{
 		timerBonus += 0.34f;
@@ -40,19 +42,11 @@ void gameData::update()
 		if (level % 3 == 0 && enemyCount < 5) enemyCount++;
 	}
 
+	if (level % 2 == 0) UnloadTexture(background), background = LoadTexture("map/night.png");
+	else UnloadTexture(background), background = LoadTexture("map/day.png");
+
 	for (int i = 0; i < collectibleCount; i++) collectibles[i] = generateCollectible(type[GetRandomValue(0, 3)]);
 	for (int i = 0; i < enemyCount; i++) enemies[i] = Enemy();
-
-	if (level % 2 == 0)
-	{
-		UnloadTexture(background);
-		background = LoadTexture("map/night.png");
-	}
-	else
-	{
-		UnloadTexture(background);
-		background = LoadTexture("map/day.png");
-	}
 }
 
 void gameData::reset()

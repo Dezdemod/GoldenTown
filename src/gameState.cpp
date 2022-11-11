@@ -17,8 +17,8 @@ void GameState::gameOverScreen()
 		{
 			DrawTexture(gameOverTexture, 0, 0, WHITE);
 			DrawTextureEx(arrow.first, arrow.second, 0, 1.0f, arrowColor);
-			DrawText(TextFormat("%i", data->totalMoney), 720, 194, 70, WHITE);
-			DrawText(TextFormat("%i", data->totalCollectibles), 840, 354, 70, WHITE);
+			DrawTextEx(data->mainFont, TextFormat("%i", data->totalMoney), Vector2{ 720.0f, 199.0f }, 60.0f, 0.0f, WHITE);
+			DrawTextEx(data->mainFont, TextFormat("%i", data->totalCollectibles), Vector2{ 840.0f, 359.0f }, 60.0f, 0.0f, WHITE);
 		}
 		EndDrawing();
 		this->controls();

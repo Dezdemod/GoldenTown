@@ -2,7 +2,7 @@
 
 Tutorial::Tutorial()
 	: tutorialScreen(LoadTexture("tutorial.png"))
-	, select(LoadSound("aduio/select.wav"))
+	, select(LoadSound("audio/select.wav"))
 {
 }
 

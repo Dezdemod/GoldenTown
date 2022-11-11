@@ -1,7 +1,8 @@
 #include <scoreboard.h>
 
 Scoreboard::Scoreboard(std::shared_ptr<gameData> gamedata)
-	: texture(LoadTexture("scoreboard.png"))
+	: textSize(35.0f)
+	, texture(LoadTexture("scoreboard.png"))
 	, data(gamedata)
 {
 }
@@ -16,10 +17,10 @@ void Scoreboard::draw()
 		{
 			ClearBackground(BROWN);
 			DrawTexture(texture, texture.width / 2, texture.height / 2, WHITE);
-			DrawText(TextFormat("%i", data->money), 560, 207, 45, DARKGREEN);
-			DrawText(TextFormat("+%i", timeBonus), 730, 271, 45, DARKGREEN);
-			DrawText(TextFormat("-%i", data->expenses), 655, 330, 45, Color{ 186, 7, 7, 255 });
-			DrawText(TextFormat("%i", (data->money + timeBonus - data->expenses)), 735, 392, 45, DARKGREEN);
+			DrawTextEx(data->mainFont, TextFormat("%i", data->money), Vector2{ 560.0f, 210.0f }, textSize, 0.0f, DARKGREEN);
+			DrawTextEx(data->mainFont, TextFormat("+%i", timeBonus), Vector2{ 730.0f, 274.0f }, textSize, 0.0f, DARKGREEN);
+			DrawTextEx(data->mainFont, TextFormat("-%i", data->expenses), Vector2{ 655.0f, 333.0f }, textSize, 0.0f, Color{ 186, 7, 7, 255 });
+			DrawTextEx(data->mainFont, TextFormat("%i", (data->money + timeBonus - data->expenses)), Vector2{ 735.0f, 395.0f }, textSize, 0.0f, DARKGREEN);
 		}
 		EndDrawing();
 	}

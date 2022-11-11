@@ -1,18 +1,16 @@
 #include <player.h>
 
 Player::Player(std::shared_ptr<gameData> gamedata)
-	: canMove(true)
-	, goLeft(false)
+	: lives(3)
+	, canMove(true)
 	, ascend(false)
-	, lives(3)
-	, positionX(605.0f)
-	, positionY(125.0f)
 	, cartSpeed(3.0f)
 	, hookSpeed(4.0f)
 	, bonusHookSpeed(0.0f)
 	, reel(LoadSound("audio/reel.mp3"))
 	, playerTexture(LoadTexture("player/player.png"))
 	, claw(LoadTexture("player/claw.png"))
+	, position(Vector2{605.0f, 125.0f})
 	, ropeStart(Vector2{ 622.0f, 150.0f })
 	, ropeEnd(Vector2{ 622.0f, 200.0f })
 	, data(gamedata)
@@ -21,7 +19,7 @@ Player::Player(std::shared_ptr<gameData> gamedata)
 
 void Player::draw()
 {
-	DrawTexture(playerTexture, positionX, positionY, WHITE);
+	DrawTexture(playerTexture, position.x, position.y, WHITE);
 	DrawLineEx(ropeStart, ropeEnd, 3.0f, BROWN);
 	DrawTexture(claw, ropeEnd.x - 10.0f, ropeEnd.y, WHITE);
 
@@ -30,14 +28,11 @@ void Player::draw()
 
 void Player::movement()
 {
-	if (!goLeft && positionX >= 1243.0f) goLeft = true;
-	else if (!goLeft) positionX += cartSpeed;
+	position.x += cartSpeed;
+	ropeStart.x = position.x + 18.0f;
+	ropeEnd.x = position.x + 18.0f;
+	if (position.x >= 1243.0f || position.x <= 4.0f) cartSpeed *= -1;
 
-	if (goLeft && positionX <= 4.0f) goLeft = false;
-	else if (goLeft) positionX -= cartSpeed;
-
-	ropeStart.x = positionX + 18.0f;
-	ropeEnd.x = positionX + 18.0f;
 	if (IsKeyPressed(KEY_SPACE))
 	{
 		canMove = false;
@@ -128,12 +123,10 @@ void Player::changePlayer(const char* textureName, float speed)
 
 void Player::resetPosition()
 {
-	positionX = 605.0f;
-	positionY = 125.0f;
+	position.x = 605.0f;
 	ropeStart = { 622.0f, 150.0f };
 	ropeEnd = { 622.0f, 200.0f };
 	canMove = true;
-	goLeft = false;
 	ascend = false;
 }
 

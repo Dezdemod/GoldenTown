@@ -71,7 +71,7 @@ void Game::pauseGame()
 		}
 		EndDrawing();
 		if (IsKeyPressed(KEY_P)) pause = false;
-		if (IsKeyPressed(KEY_M)) data->money = 500;
+		if (IsKeyPressed(KEY_M)) data->money = 5000;
 	}
 	player->resumeSound();
 }

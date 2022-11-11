@@ -3,12 +3,11 @@
 Map::Map(std::shared_ptr<gameData> gamedata, std::shared_ptr<Player> Player)
 	: data(gamedata)
 	, player(Player)
-	, cloudSpeed(0.05f)
+	, cloudSpeed(0.03f)
 	, clouds
 	({
-		{std::make_pair(Texture2D(LoadTexture("map/cloud.png")), Vector2{ 100.0f, 5.0f })}
-		,{std::make_pair(Texture2D(LoadTexture("map/cloud2.png")), Vector2{ 550.0f, 20.0f })}
-		,{std::make_pair(Texture2D(LoadTexture("map/cloud3.png")), Vector2{ 900.0f, 10.0f })}
+		{std::make_pair(Texture2D(LoadTexture("map/cloud.png")), Vector2{ 200.0f, 5.0f })}
+		,{std::make_pair(Texture2D(LoadTexture("map/cloud2.png")), Vector2{ 800.0f, 10.0f })}
 	})
 {
 }
@@ -31,9 +30,9 @@ void Map::draw()
 		}
 		if (data->level % 2 == 1) this->drawClouds();
 		player->draw();
-		DrawText(TextFormat("%i", data->money), 55, 3, 30, WHITE);
-		DrawText(TextFormat("%i", (int)(data->timer)), 56, 51, 34, WHITE);
-		DrawText(TextFormat("%i", player->getLives()), 1234, 3, 28, WHITE);
+		DrawTextEx(data->mainFont, TextFormat("%i", data->money), Vector2{54.0f, 8.0f}, 21.0f, 0.0f, WHITE);
+		DrawTextEx(data->mainFont, TextFormat("00:%02i", (int)(data->timer)), Vector2{ 56.0f, 58.0f }, 21.0f, 0.0f, WHITE);
+		DrawTextEx(data->mainFont, TextFormat("%i", player->getLives()), Vector2{ 1230.0f, 6.0f }, 22.0f, 0.0f, WHITE);
 	}
 	EndDrawing();
 }
