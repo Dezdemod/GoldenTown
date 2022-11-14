@@ -10,28 +10,20 @@ struct gameData
 	void update();
 	void reset();
 
-	const int screenWidth;
-	const int screenHeight;
+	const int screenWidth, screenHeight;
 	int level;
-	int money;
-	int totalMoney;
-	int expenses;
 	int enemyCount;
-	int collectibleCount;
-	int gatheredCollectibles;
-	int totalCollectibles;
-	float timer;
-	float timerBonus;
+	int money, totalMoney, expenses;
+	int collectibleCount, gatheredCollectibles, totalCollectibles;
+	float timer, timerBonus;
 
-	const Sound collect;
-	const Sound damage;
-	const Sound select;
+	const Sound collect, damage, select;
 
 	Texture2D background;
 	Music backgroundMusic;
-	Font mainFont;
+	const Font mainFont;
 
-	const collectibleType type[4] = { stone, gold, diamond, ruby };
+	const collectibleType type[4];
 	std::vector<Collectible> collectibles;
 	std::vector<Enemy> enemies;
 };

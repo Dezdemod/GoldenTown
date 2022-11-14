@@ -21,14 +21,11 @@ private:
 	bool canMove;
 
 	Vector2 position;
-	Texture2D enemy;
-	Texture2D reverseEnemy;
+	Texture2D enemy, reverseEnemy;
 	std::vector<Color> colors;
 	Color color;;
 
-	float frameWidth;
-	float timer;
-	int frame;
-	int maxFrames;
+	float frameWidth, timer;
+	int frame, maxFrames;
 };
 
