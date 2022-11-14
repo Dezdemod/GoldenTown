@@ -15,10 +15,9 @@ public:
 	inline Vector2 getPosition() const { return position; }
 
 private:
-	void movement();
+	void inline movement();
 
 	float speed;
-	bool goLeft;
 	bool canMove;
 
 	Vector2 position;

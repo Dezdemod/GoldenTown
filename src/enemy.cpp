@@ -2,7 +2,6 @@
 
 Enemy::Enemy()
 	: speed((float)(GetRandomValue(1, 3)))
-	, goLeft(false)
 	, canMove(true)
 	, position(Vector2{ (float)(GetRandomValue(5, 1250)), (float)(GetRandomValue(300, 685)) })
 	, enemy(LoadTexture("enemy/enemy.png"))
@@ -22,7 +21,7 @@ void Enemy::draw()
 	if (timer > 0.2f) timer = 0.0f, frame++;
 	frame %= maxFrames;
 
-	if (!goLeft) DrawTextureRec
+	if (speed > 0) DrawTextureRec
 	(
 		enemy,
 		Rectangle{ frameWidth * frame, 0, frameWidth, (float)enemy.height },
@@ -40,11 +39,8 @@ void Enemy::draw()
 	if (canMove) this->movement();
 }
 
-void Enemy::movement()
+void inline Enemy::movement()
 {
-	if (!goLeft && position.x >= 1250.0f) goLeft = true;
-	else if (!goLeft) position.x += speed;
-
-	if (goLeft && position.x <= 5.0f) goLeft = false;
-	else if (goLeft) position.x -= speed;
+	if (position.x >= 1265.0f || position.x <= 10.0f) speed *= -1;
+	position.x += speed;
 }
