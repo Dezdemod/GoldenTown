@@ -27,7 +27,7 @@ void Shop::draw()
 			DrawTexture(shopTexture, 0, 0, WHITE);
 			DrawTextEx(data->mainFont, TextFormat("%i", data->money), Vector2{ 115.0f, 12.0f }, 40.0f, 0.0f, Color{ 75, 105, 47, 255 });
 			!wasHookBought ? DrawTextEx(data->mainFont, "$500", Vector2{ 208.0f, 510.0f }, 55.0f, 0.0f, GREEN) : DrawTextEx(data->mainFont, "SOLD", Vector2{ 212.0f, 510.0f }, 55.0f, 0.0f, RED);
-			!wasCartBought ? DrawTextEx(data->mainFont, "$500", Vector2{ 868.0f, 510.0f }, 55.0f, 0.0f, GREEN) : DrawTextEx(data->mainFont, "SOLD", Vector2{ 872.0f, 510.0f }, 55.0f, 0.0f, RED);
+			!wasCartBought ? DrawTextEx(data->mainFont, "$950", Vector2{ 868.0f, 510.0f }, 55.0f, 0.0f, GREEN) : DrawTextEx(data->mainFont, "SOLD", Vector2{ 872.0f, 510.0f }, 55.0f, 0.0f, RED);
 		}
 		EndDrawing();
 		this->controls();
