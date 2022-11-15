@@ -20,12 +20,12 @@ gameData::gameData()
 	, backgroundMusic(LoadMusicStream("audio/music.mp3"))
 	, mainFont(LoadFont("prstart.ttf"))
 	, type{ stone, gold, diamond, ruby }
-	, collectibles(20, generateCollectible(stone))
+	, collectibles(20, std::move(generateCollectible(stone)))
 	, enemies(5)
 
 {
 	SetSoundVolume(damage, 0.5f);
-	for (int i = 0; i < collectibleCount; i++) collectibles[i] = generateCollectible(type[GetRandomValue(0, 3)]);
+	for (int i = 0; i < collectibleCount; i++) collectibles[i] = std::move(generateCollectible(type[GetRandomValue(0, 3)]));
 }
 
 void gameData::update()
@@ -46,8 +46,8 @@ void gameData::update()
 	if (level % 2 == 0) UnloadTexture(background), background = LoadTexture("map/night.png");
 	else UnloadTexture(background), background = LoadTexture("map/day.png");
 
-	for (int i = 0; i < collectibleCount; i++) collectibles[i] = generateCollectible(type[GetRandomValue(0, 3)]);
-	for (int i = 0; i < enemyCount; i++) enemies[i] = Enemy();
+	for (int i = 0; i < collectibleCount; i++) collectibles[i] = std::move(generateCollectible(type[GetRandomValue(0, 3)]));
+	for (int i = 0; i < enemyCount; i++) enemies[i] = std::move(Enemy());
 }
 
 void gameData::reset()
